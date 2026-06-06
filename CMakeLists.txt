@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
-project(xit)
+project(vcs-cli)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(xit src/main.cc
+add_executable(vcs-cli src/main.cc
         src/xit.cc
         src/xit.hh
         src/FileOperations.cc
@@ -11,4 +11,4 @@ add_executable(xit src/main.cc
         src/pushRepoOperations.cc
         src/pushRepoOperations.hh
 )
-install(TARGETS xit DESTINATION /usr/local/bin)
+install(TARGETS vcs-cli DESTINATION /usr/local/bin)
