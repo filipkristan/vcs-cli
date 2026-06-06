@@ -3,12 +3,12 @@ project(xit)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(xit main.cc
-        xit.cc
-        xit.hh
-        FileOperations.cc
-        FileOperations.hh
-        pushRepoOperations.cc
-        pushRepoOperations.hh
+add_executable(xit src/main.cc
+        src/xit.cc
+        src/xit.hh
+        src/FileOperations.cc
+        src/FileOperations.hh
+        src/pushRepoOperations.cc
+        src/pushRepoOperations.hh
 )
 install(TARGETS xit DESTINATION /usr/local/bin)
