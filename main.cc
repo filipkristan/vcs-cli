@@ -7,6 +7,12 @@
 #include <string>
 #include <vector>
 #include "xit.hh"
+#include "FileOperations.hh"
+#include "pushRepoOperations.hh"
+
+using std::string;
+using std::cout;
+using std::endl;
 
 int main(int argc, char *argv[]) {
     if (argc <= 1 || std::string(argv[1]) == "init") {
@@ -14,6 +20,20 @@ int main(int argc, char *argv[]) {
     }
     else if (std::string(argv[1]) == "patch") {
        xit::handleMakingPatches(argv[2]);
+    }
+    else if (std::string(argv[1]) == "push") {
+        if (fileExists(".xit")) {
+            // push changes to repo
+            if (std::string(argv[2]) == "-u") {
+                handlePushingRepo(argv[3]);
+            } else {
+                std::cout << "Use arg '-u {username}' to upload the repo to the user's profile" << std::endl;
+            }
+        }
+        else {
+            std::cout << "vcs repo not found! Create one using 'xit init'" << std::endl;
+            std::cout << "Note: repos's can only be uploaded from the root folder!" << std::endl;
+        }
     }
     else if (std::string(argv[1]) == "branch") {
         if (argc <= 2) {
@@ -44,7 +64,5 @@ int main(int argc, char *argv[]) {
     {
         xit::handleDisplayingTheHelpPage();
     }
-    else
-        std::cout << "No branch for you :/" << std::endl;
     return 0;
 }
