@@ -4,7 +4,7 @@
 
 using std::string;
 
-class pushRepoOperations {
+class PushRepoOperations {
 };
 
 void handlePushingRepo(string username);

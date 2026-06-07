@@ -8,7 +8,7 @@ add_executable(vcs-cli src/main.cc
         src/xit.hh
         src/FileOperations.cc
         src/FileOperations.hh
-        src/pushRepoOperations.cc
-        src/pushRepoOperations.hh
+        src/PushRepoOperations.cc
+        src/PushRepoOperations.hh
 )
 install(TARGETS vcs-cli DESTINATION /usr/local/bin)

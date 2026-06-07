@@ -4,7 +4,7 @@
 #include <vector>
 #include "xit.hh"
 #include "FileOperations.hh"
-#include "pushRepoOperations.hh"
+#include "PushRepoOperations.hh"
 
 using std::string;
 using std::cout;
