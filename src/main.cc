@@ -1,7 +1,3 @@
-/////////////////////////////////////////
-// Created by Filip Kristan. v20260301 //
-/////////////////////////////////////////
-
 #include <filesystem>
 #include <iostream>
 #include <string>
