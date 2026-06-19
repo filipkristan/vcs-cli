@@ -1,8 +1,8 @@
-#ifndef XIT_XIT_HH
-#define XIT_XIT_HH
+#ifndef VCS_CLI_REPO_HH
+#define VCS_CLI_REPO_HH
 #include <string>
 
-class xit
+class Repo
 {
     public:
     static void createNewPatch(std::string commitMessage);
@@ -22,4 +22,4 @@ class xit
 };
 
 
-#endif //XIT_XIT_HH
+#endif //VCS_CLI_REPO_HH

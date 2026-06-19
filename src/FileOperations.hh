@@ -1,5 +1,5 @@
-#ifndef XIT_FILEOPERATIONS_HH
-#define XIT_FILEOPERATIONS_HH
+#ifndef VCS_CLI_FILEOPERATIONS_HH
+#define VCS_CLI_FILEOPERATIONS_HH
 #include <filesystem>
 
 class FileOperations {
@@ -7,4 +7,4 @@ class FileOperations {
 
 bool fileExists(const std::filesystem::path& p, std::filesystem::file_status s = std::filesystem::file_status{});
 
-#endif //XIT_FILEOPERATIONS_HH
+#endif //VCS_CLI_FILEOPERATIONS_HH

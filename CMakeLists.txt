@@ -4,8 +4,8 @@ project(vcs-cli)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(vcs-cli src/main.cc
-        src/xit.cc
-        src/xit.hh
+        src/Repo.cc
+        src/Repo.hh
         src/FileOperations.cc
         src/FileOperations.hh
         src/PushRepoOperations.cc
