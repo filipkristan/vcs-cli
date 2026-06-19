@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
        xit::handleMakingPatches(argv[2]);
     }
     else if (std::string(argv[1]) == "push") {
-        if (fileExists(".xit")) {
+        if (fileExists(".vcs-cli")) {
             // push changes to repo
             if (std::string(argv[2]) == "-u") {
                 handlePushingRepo(argv[3]);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
             }
         }
         else {
-            std::cout << "vcs repo not found! Create one using 'xit init'" << std::endl;
+            std::cout << "vcs repo not found! Create one using 'vcs-cli init'" << std::endl;
             std::cout << "Note: repos's can only be uploaded from the root folder!" << std::endl;
         }
     }

@@ -9,8 +9,8 @@
 #include <vector>
 
 std::string branch = "master";
-std::string branchPath = ".xit/branch/" + branch;
-std::string lastPatchPath = ".xit/branch/" + branch + "/lastPatchPath.txt";
+std::string branchPath = ".vcs-cli/branch/" + branch;
+std::string lastPatchPath = ".vcs-cli/branch/" + branch + "/lastPatchPath.txt";
 
 void xit::writeDataToFile(const std::string& location, const std::string& data, bool appendMode) {
     std::ofstream file;
@@ -48,7 +48,7 @@ std::string xit::readDataFromFile(std::string location) {
 }
 
 void xit::makeFirstPatch() {
-    // Create a diff between src dir and xit src dir and save patch in patches folder
+    // Create a diff between src dir and vcs-cli src dir and save patch in patches folder
     std::ofstream file;
     file.open (lastPatchPath.c_str());
     std::string value = "0001";
@@ -66,24 +66,24 @@ void xit::makeFirstPatch() {
 void xit::initXitRepo(std::string arg) {
 
     branch = arg;
-    branchPath = ".xit/branch/" + branch;
-    std::string command1 = "rm -rf src && mkdir src && mkdir -p .xit/branch && mkdir -p " + branchPath + "/original_src && mkdir -p " + branchPath + "/old_src && mkdir -p " + branchPath + "/new_src && mkdir -p " + branchPath + "/patches && cp -r src " + branchPath + "/original_src/";
+    branchPath = ".vcs-cli/branch/" + branch;
+    std::string command1 = "rm -rf src && mkdir src && mkdir -p .vcs-cli/branch && mkdir -p " + branchPath + "/original_src && mkdir -p " + branchPath + "/old_src && mkdir -p " + branchPath + "/new_src && mkdir -p " + branchPath + "/patches && cp -r src " + branchPath + "/original_src/";
     system(command1.c_str());
     xit::makeFirstPatch();
-    xit::writeDataToFile(".xit/branch.txt", "master", false);
-    std::cout << "Xit repo initialized!" << std::endl;
+    xit::writeDataToFile(".vcs-cli/branch.txt", "master", false);
+    std::cout << "vcs-cli repo initialized!" << std::endl;
 }
 
 void xit::handleDisplayingTheHelpPage() {
-    std::cout << "Use the command 'xit init' to initialize Xit." << std::endl;
-    std::cout << "Use the command 'xit new' to create a new patch." << std::endl;
-    std::cout << "Use the command 'xit revert 00XX' to revert back to before that patch." << std::endl;
+    std::cout << "Use the command 'vcs-cli init' to initialize a vcs-cli repo." << std::endl;
+    std::cout << "Use the command 'vcs-cli new' to create a new patch." << std::endl;
+    std::cout << "Use the command 'vcs-cli revert 00XX' to revert back to before that patch." << std::endl;
 }
 
 void xit::handleMakingPatches(std::string commitMessage) {
     std::string command = branchPath + "/patches/0001.patch";
     std::ifstream first_patch_location_path(command.c_str());
-    std::ifstream XitLocationPath(".xit");
+    std::ifstream XitLocationPath(".vcs-cli");
     if (XitLocationPath.is_open())
     {
         if(first_patch_location_path.is_open())
@@ -98,11 +98,11 @@ void xit::handleMakingPatches(std::string commitMessage) {
         XitLocationPath.close();
     }
     else
-        std::cout << "Xit not yet initialized!" << std::endl;
+        std::cout << "vcs-cli repo not yet initialized!" << std::endl;
 }
 
 void xit::setupXitRepo(std::string arg) {
-    std::ifstream DotXitFolderLocationPath(".xit");
+    std::ifstream DotXitFolderLocationPath(".vcs-cli");
     std::ifstream firstPatchLocationPath(branchPath + "patches/0001.patch");
     if(!DotXitFolderLocationPath.is_open()){
         xit::initXitRepo(arg);
@@ -110,11 +110,11 @@ void xit::setupXitRepo(std::string arg) {
         system("echo \"author = \"John Smith\"\nwebsite = \"www.example.com\" \nprogram_name = \"app\" \nprogram_name_fancy = \"The Example Application\" \nlanguage = \"C++\" \ntags = \"example, portfolio, learning"" > info.txt");
     }
     else
-        std::cout << "Xit repo already initialized!" << std::endl;
+        std::cout << "vcs-cli repo already initialized!" << std::endl;
 }
 
 void xit::revertPatches(const std::string& argv2) {
-    std::ifstream DotXitFolderLocationPath(".xit");
+    std::ifstream DotXitFolderLocationPath(".vcs-cli");
     std::ifstream file;
     file.open(lastPatchPath);
     if (file.is_open())
@@ -158,9 +158,9 @@ void xit::revertPatches(const std::string& argv2) {
             std::string command2 = "rm " + branchPath + "/patches/" + value + ".patch";
             system((command2).c_str());
             int subtract = atoi(value.c_str()) - 1;
-            system(("echo " + std::to_string(subtract) + " > .xit/lastPatchPath.txt").c_str());
+            system(("echo " + std::to_string(subtract) + " > .vcs-cli/lastPatchPath.txt").c_str());
         }
-        std::string command2 = "cp -r .xit/new_src/ src/";
+        std::string command2 = "cp -r .vcs-cli/new_src/ src/";
         system("rm -rf src");
         system(command2.c_str());
         system("rm -rf src/*.orig");
@@ -174,32 +174,32 @@ void xit::revertPatches(const std::string& argv2) {
 void xit::makeNewBranch(const std::string(&arg)) {
     std::string branchNameToCopy = branch;
     branch = arg;
-    std::string command1 = "mkdir .xit/branch/" + branch;
-    std::string command2 = "cp -r .xit/branch/" + branchNameToCopy + "/* " + ".xit/branch/" + branch;
+    std::string command1 = "mkdir .vcs-cli/branch/" + branch;
+    std::string command2 = "cp -r .vcs-cli/branch/" + branchNameToCopy + "/* " + ".vcs-cli/branch/" + branch;
     system(command1.c_str());
     system(command2.c_str());
     std::cout << "Created new branch: " << arg << std::endl;
 }
 
 void xit::changeBranch(const std::string(&arg)) {
-    std::string currentBranch = xit::readDataFromFile(".xit/branch.txt");
-    branchPath = ".xit/branch/" + arg;
+    std::string currentBranch = xit::readDataFromFile(".vcs-cli/branch.txt");
+    branchPath = ".vcs-cli/branch/" + arg;
     std::string command1 = "rm -rf src && mkdir src";  // Recreates src folder
     std::string command2 = "cp -r " + branchPath + "/new_src/*" + " src";  // Copies branch content to src folder
     system(command1.c_str());
     system(command2.c_str());
-    xit::writeDataToFile(".xit/branch.txt", arg, false);
+    xit::writeDataToFile(".vcs-cli/branch.txt", arg, false);
     std::cout << "Changed branch to: " << arg << std::endl;
 }
 
 void xit::removeBranch(const std::string(&arg)) {
-    std::string command = "rm -rf .xit/branch/" + arg;
+    std::string command = "rm -rf .vcs-cli/branch/" + arg;
     system(command.c_str());
     std::cout << "Removed branch: " << arg << std::endl;
 }
 
 void xit::renameBranch(const std::string(&arg), const std::string& arg2) {
-    std::string command = "mv .xit/branch/" + arg + " .xit/branch/" + arg2;
+    std::string command = "mv .vcs-cli/branch/" + arg + " .vcs-cli/branch/" + arg2;
     system(command.c_str());
     std::cout << "Renamed branch from " << arg << " to: " << arg2 << std::endl;
 }
@@ -247,11 +247,11 @@ void xit::createNewPatch(std::string commitMessage) {
             lastPatchLocationInsert << value << "\n";
 
             // Make a new patch
-            branch = readDataFromFile(".xit/branch.txt");
-            branchPath = ".xit/branch/" + branch;
+            branch = readDataFromFile(".vcs-cli/branch.txt");
+            branchPath = ".vcs-cli/branch/" + branch;
             std::string command = "diff -ruN " + branchPath + "/new_src/ src > " + branchPath + "/patches/" + value + ".patch";
             std::string command2 = "cp -r src " + branchPath + "/new_src/";
-            std::string patchMessagesLocation = ".xit/branch/" + branch + "/patchMessages/";
+            std::string patchMessagesLocation = ".vcs-cli/branch/" + branch + "/patchMessages/";
             std::string command3 = "mkdir " + patchMessagesLocation;
             system(command.c_str());
             system(command2.c_str());
@@ -262,7 +262,7 @@ void xit::createNewPatch(std::string commitMessage) {
             {
                 system(command3.c_str());
             }
-            std::string dataLocation = ".xit/branch/" + branch + "/patchMessages/" + value;
+            std::string dataLocation = ".vcs-cli/branch/" + branch + "/patchMessages/" + value;
             xit::writeDataToFile(dataLocation, std::move(commitMessage), false);
             lastPatchLocationInsert.close();
         }
