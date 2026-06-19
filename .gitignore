@@ -1,3 +1,5 @@
+.vcs-cli/*
+.xit/*
 cmake-build-release
 build
 .idea
