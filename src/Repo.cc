@@ -59,7 +59,7 @@ void Repo::makeFirstPatch() {
     }
 }
 
-void Repo::initXitRepo(std::string arg) {
+void Repo::initRepo(std::string arg) {
     branch = std::move(arg);
     branchPath = ".vcs-cli/branch/" + branch;
     std::string command1 = "rm -rf src && mkdir src && mkdir -p .vcs-cli/branch && mkdir -p " + branchPath +
@@ -94,11 +94,11 @@ void Repo::handleMakingPatches(const std::string &commitMessage) {
         std::cout << "vcs-cli repo not yet initialized!" << std::endl;
 }
 
-void Repo::setupXitRepo(std::string arg) {
+void Repo::setupRepo(std::string arg) {
     std::ifstream DotXitFolderLocationPath(".vcs-cli");
     std::ifstream firstPatchLocationPath(branchPath + "patches/0001.patch");
     if (!DotXitFolderLocationPath.is_open()) {
-        Repo::initXitRepo(std::move(arg));
+        Repo::initRepo(std::move(arg));
         DotXitFolderLocationPath.close();
         system(
             "echo \"author = \"John Smith\"\nwebsite = \"www.example.com\" \nprogram_name = \"app\" \nprogram_name_fancy = \"The Example Application\" \nlanguage = \"C++\" \ntags = \"example, portfolio, learning"

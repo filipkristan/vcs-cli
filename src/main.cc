@@ -12,7 +12,7 @@ using std::endl;
 
 int main(int argc, char *argv[]) {
     if (argc <= 1 || std::string(argv[1]) == "init") {
-        Repo::setupXitRepo("master");
+        Repo::setupRepo("master");
     }
     else if (std::string(argv[1]) == "patch") {
        Repo::handleMakingPatches(argv[2]);

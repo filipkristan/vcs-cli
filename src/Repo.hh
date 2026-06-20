@@ -9,10 +9,10 @@ class Repo
     static void writeDataToFile(const std::string &location, const std::string &data, bool appendMode);
     static std::string readDataFromFile(const std::string &location);
     static void makeFirstPatch();
-    static void initXitRepo(std::string arg);
+    static void initRepo(std::string arg);
     static void handleDisplayingTheHelpPage();
     static void handleMakingPatches(const std::string& commitMessage);
-    static void setupXitRepo(std::string arg);
+    static void setupRepo(std::string arg);
     static void revertPatches(const std::string& argv2);
     static void makeNewBranch(const std::string &arg);
     static void changeBranch(const std::string &arg);
