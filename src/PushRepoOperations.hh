@@ -7,6 +7,6 @@ using std::string;
 class PushRepoOperations {
 };
 
-void handlePushingRepo(string username);
+void handlePushingRepo(const string& username);
 
 #endif //VCS_CLI_PUSHREPOOPERATIONS_HH
