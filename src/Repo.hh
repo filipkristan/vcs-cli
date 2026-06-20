@@ -5,19 +5,22 @@
 class Repo
 {
     public:
-    static void createNewPatch(const std::string& commitMessage);
-    static void writeDataToFile(const std::string &location, const std::string &data, bool appendMode);
-    static std::string readDataFromFile(const std::string &location);
+    // Patches
     static void makeFirstPatch();
-    static void initRepo(std::string arg);
-    static void handleDisplayingTheHelpPage();
-    static void handleMakingPatches(const std::string& commitMessage);
-    static void setupRepo(std::string arg);
+    static void createNewPatch(const std::string& commitMessage);
     static void revertPatches(const std::string& argv2);
+    static void handleMakingPatches(const std::string& commitMessage);
+    // Branches
     static void makeNewBranch(const std::string &arg);
     static void changeBranch(const std::string &arg);
     static void removeBranch(const std::string &arg);
     static void renameBranch(const std::string &arg, const std::string &arg2);
+    // Misc
+    static void initRepo(std::string arg);
+    static void setupRepo(std::string arg);
+    static void handleDisplayingTheHelpPage();
+    static void writeDataToFile(const std::string &location, const std::string &data, bool appendMode);
+    static std::string readDataFromFile(const std::string &location);
 };
 
 
