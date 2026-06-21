@@ -1,7 +1,7 @@
-#include "FileOperations.hh"
+#include "File.hh"
 #include <filesystem>
 
-bool fileExists(const std::filesystem::path &p, std::filesystem::file_status s) {
+bool File::fileExists(const std::filesystem::path &p, std::filesystem::file_status s) {
     if (std::filesystem::status_known(s) ? std::filesystem::exists(s) : std::filesystem::exists(p)) {
         return true;
     } else {

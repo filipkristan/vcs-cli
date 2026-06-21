@@ -1,4 +1,4 @@
-#include "PushRepoOperations.hh"
+#include "Push.hh"
 #include <filesystem>
 #include <iostream>
 #include <string>
@@ -8,7 +8,7 @@ using std::string;
 using std::cout;
 using std::endl;
 
-void handlePushingRepo(const string &username) {
+void Push::handlePushingRepo(const string &username) {
     string command = "rsync -avz ./ ";
     // append vcs-web usernames for auth (vcs-web creates an account on linux for the user with proper permissions)
     command = command.append(username);

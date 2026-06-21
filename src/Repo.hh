@@ -5,16 +5,6 @@
 class Repo
 {
     public:
-    // Patches
-    static void makeFirstPatch();
-    static void createNewPatch(const std::string& commitMessage);
-    static void revertPatches(const std::string& argv2);
-    static void handleMakingPatches(const std::string& commitMessage);
-    // Branches
-    static void makeNewBranch(const std::string &arg);
-    static void changeBranch(const std::string &arg);
-    static void removeBranch(const std::string &arg);
-    static void renameBranch(const std::string &arg, const std::string &arg2);
     // Misc
     static void initRepo(std::string arg);
     static void setupRepo(std::string arg);
